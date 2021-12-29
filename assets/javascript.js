@@ -1,3 +1,7 @@
+var lat;
+var long;
+
+
 // $.ajax({
 //     url: 'http://api.positionstack.com/v1/forward',
 //     data: {
@@ -13,5 +17,15 @@
 //     console.log(long);
 // })
 
+
 var tempLat = 33.76;
 var tempLong = -84.41;
+
+$.ajax({
+    type: 'POST',
+    url: 'https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=hourly,daily&appid=5995eb989855fb7c98ae5e17f47586af',
+    dataType: "json"
+}).done(function (response) {
+    console.log(response)
+})
+
