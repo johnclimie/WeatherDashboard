@@ -21,20 +21,17 @@
 
         <div class="col-sm-4 p-3 text-center">
             <h3 class="m-3">Search for a City</h3>
-            <input class="m-1 col-12" placeholder="Ex: Atlanta">
+            <input class="m-1 col-12" placeholder="Ex: Atlanta" id="textInput">
             <div>
                 <button id="searchBtn"class="btn btn-primary m-1 col-12">Search</button>
             </div>
             <hr>
-            <div id="searchHistory">
-                <!-- <button class="col-12 btn border-info m-1">Result 1</button>
-                <button class="col-12 btn border-info m-1">Result 2</button>
-                <button class="col-12 btn border-info m-1">Result 3</button> -->
-            </div>
+            <div id="searchHistory"></div>
+            <button class="col-12 btn btn-danger m-1" id="clearHistory">Clear History</button>
         </div>
 
         <div class="col-sm-8" id="searchResults">
-            <!-- <div class="p-3 border border-dark">
+            <div class="p-3 border border-dark">
                 <h1 class="m-3">Atlanta</h1>
                 <h4 class="m-3">Temp:</h4>
                 <h4 class="m-3">Wind:</h4>
@@ -81,7 +78,7 @@
                         <h5 class="m-2">Humidity</h5>
                     </div>
                 </div>
-            </div> -->
+            </div>
         </div>
     </main>
 

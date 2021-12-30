@@ -1,73 +1,29 @@
 $(document).ready(function() {
+    var textInput = $('#textInput');
     var searchBtn = $('#searchBtn');
     var searchHistory = $('#searchHistory');
-    var searchResults = $('#searchResults')
+    var searchResults = $('#searchResults');
+    var clearBtn = $('#clearHistory');
     
+    searchBtn.click(() => {
+        searchHistory.append(`<button class="col-12 btn border-info m-1">${textInput.val().charAt(0).toUpperCase() + textInput.val().slice(1).toLowerCase()}</button>`);
 
-    searchBtn.click(function() {
-        searchHistory.html(
-        `<button class="col-12 btn border-info m-1">Result 1</button>
-        <button class="col-12 btn border-info m-1">Result 2</button>
-        <button class="col-12 btn border-info m-1">Result 3</button>`);
-
-        searchResults.html(
-            `<div class="p-3 border border-dark">
-            <h1 class="m-3">Atlanta</h1>
-            <h4 class="m-3">Temp:</h4>
-            <h4 class="m-3">Wind:</h4>
-            <h4 class="m-3">Humidity:</h4>
-            <h4 class="m-3">UV Index:</h4>
-        </div>
-
-        <div class="p-3">
-            <h1>5-Day Forecast</h1>
-            <div class="row justify-content-center">
-                <div class="col-10 border border-dark p-2 m-3">
-                    <h2 class="m-3">12/26/21</h2>
-                    <img src="#" class="m-2">
-                    <h5 class="m-2">Temp</h5>
-                    <h5 class="m-2">Wind</h5>
-                    <h5 class="m-2">Humidity</h5>
-                </div>
-                <div class="col-10 border border-dark p-2 m-3">
-                    <h2 class="m-3">12/26/21</h2>
-                    <img src="#" class="m-2">
-                    <h5 class="m-2">Temp</h5>
-                    <h5 class="m-2">Wind</h5>
-                    <h5 class="m-2">Humidity</h5>
-                </div>
-                <div class="col-10 border border-dark p-2 m-3">
-                    <h2 class="m-3">12/26/21</h2>
-                    <img src="#" class="m-2">
-                    <h5 class="m-2">Temp</h5>
-                    <h5 class="m-2">Wind</h5>
-                    <h5 class="m-2">Humidity</h5>
-                </div>
-                <div class="col-10 border border-dark p-2 m-3">
-                    <h2 class="m-3">12/26/21</h2>
-                    <img src="#" class="m-2">
-                    <h5 class="m-2">Temp</h5>
-                    <h5 class="m-2">Wind</h5>
-                    <h5 class="m-2">Humidity</h5>
-                </div>
-                <div class="col-10 border border-dark p-2 m-3">
-                    <h2 class="m-3">12/26/21</h2>
-                    <img src="#" class="m-2">
-                    <h5 class="m-2">Temp</h5>
-                    <h5 class="m-2">Wind</h5>
-                    <h5 class="m-2">Humidity</h5>
-                </div>
-            </div>
-        </div>`
-        );
+        localStorage.setItem("test", searchHistory.html());
+        console.log(localStorage);
     })
 
-    searchBtn.click(function() {
-        console.log('test');
+    searchHistory.html(localStorage.getItem('test'));
+
+    clearBtn.click(function() {
+        localStorage.clear();
+        location.reload();
     })
 
 
 })
+
+
+
 
 
 
