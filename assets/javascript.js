@@ -22,7 +22,7 @@ $(document).ready(function () {
                 var long = response.data[0].longitude;
 
 
-                searchHistory.append(`<button class="col-12 btn border-info m-1">${textInput.val().charAt(0).toUpperCase() + textInput.val().slice(1).toLowerCase()}</button>`);
+                searchHistory.append(`<button class="col-12 btn border-info m-1">${textInput.val().toLowerCase().split(' ').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join(' ')}</button>`);
 
                 localStorage.setItem("test", searchHistory.html());
 
@@ -31,20 +31,21 @@ $(document).ready(function () {
                     url: `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=hourly,minutely,alerts&appid=5995eb989855fb7c98ae5e17f47586af&units=imperial`,
                     dataType: "json"
                 }).done(function (response) {
+                    searchResults.empty();
                     searchResults.append(
                         `<div class="p-3 border border-dark">
-                <h1 class="m-3">${textInput.val().charAt(0).toUpperCase() + textInput.val().slice(1).toLowerCase()}</h1>
-                <h4 class="m-3">Temp: ${response.current.temp} F</h4>
-                <h4 class="m-3">Wind: ${response.current.wind_speed} MPH</h4>
-                <h4 class="m-3">Humidity: ${response.current.humidity}</h4>
-                <h4 class="m-3">UV Index: ${response.current.uvi}</h4>
-                </div>
-                
-                <div class="p-3">
-                    <h1>5-Day Forecast</h1>
-                    <div class="row justify-content-center" id="forecast">
-                    </div>
-                </div>`
+                        <h1 class="m-3">${textInput.val().toLowerCase().split(' ').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join(' ')}</h1>
+                        <h4 class="m-3">Temp: ${response.current.temp} F</h4>
+                        <h4 class="m-3">Wind: ${response.current.wind_speed} MPH</h4>
+                        <h4 class="m-3">Humidity: ${response.current.humidity}</h4>
+                        <h4 class="m-3">UV Index: ${response.current.uvi}</h4>
+                        </div>
+                        
+                        <div class="p-3">
+                            <h1>5-Day Forecast</h1>
+                            <div class="row justify-content-center" id="forecast">
+                            </div>
+                        </div>`
                     )
 
                     var forecast = $("#forecast");
@@ -54,12 +55,12 @@ $(document).ready(function () {
                         var months = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
                         forecast.append(
                             `<div class="col-10 border border-dark p-2 m-3">
-                        <h2 class="m-3">${months[date.getMonth()]}/${date.getDate()}/${date.getFullYear()}</h2>
-                        <img src="#" class="m-2">
-                        <h5 class="m-2">Temp: ${response.daily[i].temp.day} F</h5>
-                        <h5 class="m-2">Wind: ${response.daily[i].wind_speed} MPH</h5>
-                        <h5 class="m-2">Humidity: ${response.daily[i].humidity}</h5>
-                        </div>`
+                            <h2 class="m-3">${months[date.getMonth()]}/${date.getDate()}/${date.getFullYear()}</h2>
+                            <img src="#" class="m-2">
+                            <h5 class="m-2">Temp: ${response.daily[i].temp.day} F</h5>
+                            <h5 class="m-2">Wind: ${response.daily[i].wind_speed} MPH</h5>
+                            <h5 class="m-2">Humidity: ${response.daily[i].humidity}</h5>
+                            </div>`
                         )
                     }
                 })
