@@ -21,8 +21,13 @@ $(document).ready(function () {
                 var lat = response.data[0].latitude;
                 var long = response.data[0].longitude;
 
+                //Appends new button based on recent search
 
-                searchHistory.append(`<button class="col-12 btn border-info m-1" id="prevSearch">${textInput.val().toLowerCase().split(' ').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join(' ')}</button>`);
+                const button = $("<button>", {
+                    type: "button",
+                    "class": "prevSearch col-12 btn border-info m-1",
+                    text: textInput.val().toLowerCase().split(' ').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join(' ')
+                }).appendTo(searchHistory);
 
                 localStorage.setItem("test", searchHistory.html());
 
@@ -67,11 +72,7 @@ $(document).ready(function () {
 
 
 
-                $('#prevSearch').on('click', () => {
-                   console.log("test");
-                   console.log($(this).attr("id"));
-                   console.log($(this).attr("value"));
-                });
+                
             })
         }
         
@@ -79,6 +80,24 @@ $(document).ready(function () {
 
 
     searchHistory.html(localStorage.getItem('test'));
+
+
+    searchHistory.on("click", ".prevSearch", function() {
+        console.log($(this).text())
+        $.ajax({
+            url: 'http://api.positionstack.com/v1/forward',
+            data: {
+                access_key: '1d78fafa76f422a476d2002242731baa',
+                query: $(this).text(),
+                limit: 1
+            }
+        }).done(function (response) {
+            var lat = response.data[0].latitude;
+            var long= response.data[0].longitude;
+
+            console.log(lat);
+        })
+    })
 
     clearBtn.click(function () {
         localStorage.clear();
