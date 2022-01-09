@@ -11,7 +11,7 @@ $(document).ready(function () {
             return;
         } else {
             $.ajax({
-                url: 'http://api.positionstack.com/v1/forward',
+                url: 'https://api.positionstack.com/v1/forward',
                 data: {
                     access_key: '1d78fafa76f422a476d2002242731baa',
                     query: textInput.val(),
