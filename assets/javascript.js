@@ -33,7 +33,7 @@ $(document).ready(function () {
 
                 $.ajax({
                     type: 'POST',
-                    url: `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=hourly,minutely,alerts&appid=5995eb989855fb7c98ae5e17f47586af&units=imperial`,
+                    url: `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=hourly,minutely,alerts&appid=5995eb989855fb7c98ae5e17f47586af&units=imperial`,
                     dataType: "json"
                 }).done(function (response) {
                     searchResults.empty();
