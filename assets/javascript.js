@@ -11,7 +11,7 @@ $(document).ready(function () {
             return;
         } else {
             $.ajax({
-                url: `http://api.openweathermap.org/geo/1.0/direct?q=${textInput.val()}&limit=5&appid=5995eb989855fb7c98ae5e17f47586af`
+                url: `https://api.openweathermap.org/geo/1.0/direct?q=${textInput.val()}&limit=5&appid=5995eb989855fb7c98ae5e17f47586af`
             })
             .done(function (response) {
                 var lat = response[0].lat;
@@ -87,7 +87,7 @@ $(document).ready(function () {
         var buttonCity = $(this).text()
 
         $.ajax({
-            url: `http://api.openweathermap.org/geo/1.0/direct?q=${buttonCity}&limit=5&appid=5995eb989855fb7c98ae5e17f47586af`
+            url: `https://api.openweathermap.org/geo/1.0/direct?q=${buttonCity}&limit=5&appid=5995eb989855fb7c98ae5e17f47586af`
         }).done(function (response) {
             var lat = response[0].lat;
             var long = response[0].lon;
