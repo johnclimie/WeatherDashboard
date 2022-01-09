@@ -11,15 +11,11 @@ $(document).ready(function () {
             return;
         } else {
             $.ajax({
-                url: 'https://api.positionstack.com/v1/forward',
-                data: {
-                    access_key: '1d78fafa76f422a476d2002242731baa',
-                    query: textInput.val(),
-                    limit: 1
-                }
-            }).done(function (response) {
-                var lat = response.data[0].latitude;
-                var long = response.data[0].longitude;
+                url: `http://api.openweathermap.org/geo/1.0/direct?q=${textInput.val()}&limit=5&appid=5995eb989855fb7c98ae5e17f47586af`
+            })
+            .done(function (response) {
+                var lat = response[0].lat;
+                var long = response[0].lon;
 
                 //Appends new button based on recent search
 
@@ -89,16 +85,12 @@ $(document).ready(function () {
 
     searchHistory.on("click", ".prevSearch", function() {
         var buttonCity = $(this).text()
+
         $.ajax({
-            url: 'http://api.positionstack.com/v1/forward',
-            data: {
-                access_key: '1d78fafa76f422a476d2002242731baa',
-                query: $(this).text(),
-                limit: 1
-            }
+            url: `http://api.openweathermap.org/geo/1.0/direct?q=${buttonCity}&limit=5&appid=5995eb989855fb7c98ae5e17f47586af`
         }).done(function (response) {
-            var lat = response.data[0].latitude;
-            var long= response.data[0].longitude;
+            var lat = response[0].lat;
+            var long = response[0].lon;
 
 
             $.ajax({
