@@ -11,7 +11,7 @@ $(document).ready(function () {
             return;
         } else {
             $.ajax({
-                url: 'http://api.positionstack.com/v1/forward',
+                url: 'https://api.positionstack.com/v1/forward',
                 data: {
                     access_key: '1d78fafa76f422a476d2002242731baa',
                     query: textInput.val(),
@@ -33,7 +33,7 @@ $(document).ready(function () {
 
                 $.ajax({
                     type: 'POST',
-                    url: `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=hourly,minutely,alerts&appid=5995eb989855fb7c98ae5e17f47586af&units=imperial`,
+                    url: `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=hourly,minutely,alerts&appid=5995eb989855fb7c98ae5e17f47586af&units=imperial`,
                     dataType: "json"
                 }).done(function (response) {
                     searchResults.empty();
@@ -48,7 +48,7 @@ $(document).ready(function () {
 
                     searchResults.append(
                         `<div class="p-3 border border-dark">
-                        <img src ="http://openweathermap.org/img/wn/${response.current.weather[0].icon}@2x.png" alt="Icon of weather condition">
+                        <img src ="https://openweathermap.org/img/wn/${response.current.weather[0].icon}@2x.png" alt="Icon of weather condition">
                         <h1 class="m-3">${textInput.val().toLowerCase().split(' ').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join(' ')}</h1>
                         <h4 class="m-3">Temp: ${response.current.temp} F</h4>
                         <h4 class="m-3">Wind: ${response.current.wind_speed} MPH</h4>
@@ -70,7 +70,7 @@ $(document).ready(function () {
                         var months = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
                         forecast.append(
                             `<div class="col-10 border border-dark p-2 m-3">
-                            <img src ="http://openweathermap.org/img/wn/${response.daily[i].weather[0].icon}@2x.png" style="max-width:60px;" alt="Icon of weather condition">
+                            <img src ="https://openweathermap.org/img/wn/${response.daily[i].weather[0].icon}@2x.png" style="max-width:60px;" alt="Icon of weather condition">
                             <h2 class="m-3">${months[date.getMonth()]}/${date.getDate()}/${date.getFullYear()}</h2>
                             <h5 class="m-2">Temp: ${response.daily[i].temp.day} F</h5>
                             <h5 class="m-2">Wind: ${response.daily[i].wind_speed} MPH</h5>
@@ -91,7 +91,7 @@ $(document).ready(function () {
         console.log($(this).text())
         var buttonCity = $(this).text()
         $.ajax({
-            url: 'http://api.positionstack.com/v1/forward',
+            url: 'https://api.positionstack.com/v1/forward',
             data: {
                 access_key: '1d78fafa76f422a476d2002242731baa',
                 query: $(this).text(),
@@ -104,7 +104,7 @@ $(document).ready(function () {
 
             $.ajax({
                 type: 'POST',
-                url: `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=hourly,minutely,alerts&appid=5995eb989855fb7c98ae5e17f47586af&units=imperial`,
+                url: `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=hourly,minutely,alerts&appid=5995eb989855fb7c98ae5e17f47586af&units=imperial`,
                 dataType: 'json'
             }).done(function (response) {
                 searchResults.empty();
@@ -118,7 +118,7 @@ $(document).ready(function () {
                     }
                 searchResults.append(
                     `<div class="p-3 border border-dark">
-                    <img src ="http://openweathermap.org/img/wn/${response.current.weather[0].icon}@2x.png" alt="Icon of weather condition"">
+                    <img src ="https://openweathermap.org/img/wn/${response.current.weather[0].icon}@2x.png" alt="Icon of weather condition"">
                     <h1 class="m-3">${buttonCity}</h1>
                     <h4 class="m-3">Temp: ${response.current.temp} F</h4>
                     <h4 class="m-3">Wind: ${response.current.wind_speed} MPH</h4>
@@ -140,7 +140,7 @@ $(document).ready(function () {
                     var months = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
                     forecast.append(
                         `<div class="col-10 border border-dark p-2 m-3">
-                        <img src ="http://openweathermap.org/img/wn/${response.daily[i].weather[0].icon}@2x.png" style="max-width:60px; alt="Icon of weather condition"">
+                        <img src ="https://openweathermap.org/img/wn/${response.daily[i].weather[0].icon}@2x.png" style="max-width:60px; alt="Icon of weather condition"">
                         <h2 class="m-3">${months[date.getMonth()]}/${date.getDate()}/${date.getFullYear()}</h2>
                         <h5 class="m-2">Temp: ${response.daily[i].temp.day} F</h5>
                         <h5 class="m-2">Wind: ${response.daily[i].wind_speed} MPH</h5>
